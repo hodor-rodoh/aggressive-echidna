@@ -14,15 +14,15 @@ command_switch() {
   while :; do
     case $1 in
       azure|az)
-        export KUBECONFIG=~/.kube/azure # exporting my configs where they are stored for me
+        export KUBECONFIG=~/.kube/config1 # exporting my configs where they are stored for me
         kubectl config get-contexts # shows which context you are on so you dont have the confused
         ;;
       config1|c1)
-        export KUBECONFIG=~/.kube/config
+        export KUBECONFIG=~/.kube/config2
         kubectl config get-contexts
         ;;
       config2|c2)
-        export KUBECONFIG=~/.kube/config2
+        export KUBECONFIG=~/.kube/config3
         kubectl config get-contexts
         ;;
     esac
