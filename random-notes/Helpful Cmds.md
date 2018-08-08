@@ -52,10 +52,25 @@ export `ARM_ACCESS_KEY=pcRLP1NCWzWSy5XeoRFo3Dv30jMwdE+EGQVgB8eUyInyLGcHV72e7lmSf
 `docker rm $(docker ps -a -q)` --> removes all docker images
 
 #### Kubernetes (KUBECTL)
+shorthand
+
+`pods == po`
+`ingress == ing`
+`daemonsets == ds`
+`service == svc`
+`replicasets == rs`
+
+`--all-namespaces` --> look through all namespaces
+
+`--show-labels` --> shows labels
+
+`-l app=$appname` --> sort by labls if you have any. you can get label info by performing show labels
 
 `-o wide` --> shows more details
 
 `-o yaml` --> poops out the yaml file for w/e you're looking at
+
+`-o json` --> poops out as json data which can then be pipped to jq or w/e
 
 `kubectl config get-context` --> lists all my stuff
 
@@ -67,7 +82,7 @@ export `ARM_ACCESS_KEY=pcRLP1NCWzWSy5XeoRFo3Dv30jMwdE+EGQVgB8eUyInyLGcHV72e7lmSf
 
 `kubectl get pods --context am360-kube0 -n takumi` --> can do anything if you set context + namespace
 
-`export KUBECONFIG=~/.kube/azure` --> mounts my config file to switch between different providers [gke,azure,aws]
+`export KUBECONFIG=~/.kube/*replace*` --> mounts config file to switch between different providers [gke,azure,aws]
 
 `unset KUBECONFIG` --> unsets my current config
 
@@ -79,13 +94,15 @@ export `ARM_ACCESS_KEY=pcRLP1NCWzWSy5XeoRFo3Dv30jMwdE+EGQVgB8eUyInyLGcHV72e7lmSf
 
 `kubectl get daemonsets -n namespaces` --> shows all daemonsets
 
-`kubectl logs --tail=-1,1,0 $pod_name -n namspace` --> helps you tail logs if something is crashing
+`kubectl logs $pod_name -n namespace` --> helps you tail logs if something is crashing
+
+`kubectl logs --since=1m` --> can specifiy time period for logs also
 
 `kubectl describe pods $pod_name -n namespace` --> shows you some junk and also events
 
 `kubectl get serviceAccounts` --> list the service accounts
 
-`kubectl delete serviceaccount/name-of-account` --> deletes service account. why is this in lowercase though?
+`kubectl delete serviceaccount/name-of-account` --> deletes service account.
 
 `kubectl --kubeconfig kube_config_tc660-kube0.yaml get pods --all-namespaces`
 
