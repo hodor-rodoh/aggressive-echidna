@@ -34,7 +34,6 @@ that hasn't been merged yet
 
 `az account set --subscription "Sub Name"` --> sets an azure account
 
-export `ARM_ACCESS_KEY=pcRLP1NCWzWSy5XeoRFo3Dv30jMwdE+EGQVgB8eUyInyLGcHV72e7lmSfufgjffWLephkls0VRWJFn+xpsNqyA==`
 #### Bashfuls
 
 #!/usr/bin/env bash
@@ -110,7 +109,7 @@ shorthand
 
 `ssh-copy-id -i ~/.ssh/<key-name> <user@host`> --> copies ssh key to server
 
-`/Users/sean.shen/.kube/config:/Users/sean.shen/.kube/nuc-config.yaml` -->
+`/Users/.kube/config:/Users/.kube/config.yaml` -->
 changes env variable
 
 ### Herpfur CMDS
@@ -180,24 +179,10 @@ not too important anymore but good to know SUGOI :fire:
 ## Vault things
 
 `vault login -method=github`
-`vault list pg/kv/clusters/~`
-
-## IP Address STUFF
-
-```
-vim /etc/network/interfaces
-
-change inet auto to inet static
-address 192.168.2.241 & 242
-netmask 255.255.255.0
-gateway 192.168.2.254
-dns-nameservers 8.8.8.8 8.8.4.4
-
-sudo /etc/init.d/networking restart
-```
+`vault list example/example/~`
 
 ### JQ
 
-kubectl get rs --context am560-kube0 -o json -n takumi | jq -r '.items[].metadata | { app: .labels.app }'
-kubectl get rs --context am560-kube0 -o json -n takumi | jq -r '.items[].meta | select (.replicas | contains(0) | not)'
-kubectl get rs --context am560-kube0 -o json --all-namespaces | jq -r '[.items[] |  { name: .metadata.name, namespace: .metadata.namespace, replicaCount: .status.replicas } | select(.replicaCount == 1)]'
+kubectl get rs --context example -o json -n buttsbin | jq -r '.items[].metadata | { app: .labels.app }'
+kubectl get rs --context example -o json -n buttsbin | jq -r '.items[].meta | select (.replicas | contains(0) | not)'
+kubectl get rs --context Example -o json --all-namespaces | jq -r '[.items[] |  { name: .metadata.name, namespace: .metadata.namespace, replicaCount: .status.replicas } | select(.replicaCount == 1)]'
